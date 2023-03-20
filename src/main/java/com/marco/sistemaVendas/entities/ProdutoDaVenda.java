@@ -2,10 +2,12 @@ package com.marco.sistemaVendas.entities;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marco.sistemaVendas.entities.pk.ProdutoDaVendaPK;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.criteria.Order;
 
 
 @Entity
@@ -15,6 +17,7 @@ public class ProdutoDaVenda implements Serializable{
 	
 	@EmbeddedId
 	private ProdutoDaVendaPK id;
+	
 	private Long quantidade;
 	private Double valorProduto;
 	
@@ -34,17 +37,13 @@ public class ProdutoDaVenda implements Serializable{
 	public Double getSubTotal() {
 		return valorProduto * quantidade;
 	}
-	
+
 	public Venda geVenda() {
 		return id.getIdVenda();
 	}
 
 	public void setVenda(Venda venda) {
 		this.id.setIdVenda(venda);
-	}
-	
-	public Produto geProduto() {
-		return id.getIdProduto();
 	}
 
 	public void setProduto(Produto produto) {
@@ -66,6 +65,17 @@ public class ProdutoDaVenda implements Serializable{
 	public void setValorProduto(Double valorProduto) {
 		this.valorProduto = valorProduto;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "ProdutoDaVenda [id=" + id + ", quantidade=" + quantidade + ", valorProduto=" + valorProduto + "]";
+	}
+
+	public Produto getProduto() {
+		return id.getIdProduto();
+	}
+	@JsonIgnore
+	public Venda getVenda() {
+		return id.getIdVenda();
+	}
 }

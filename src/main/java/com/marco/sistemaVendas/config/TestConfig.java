@@ -43,8 +43,23 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-
-		Categoria cat1 = new Categoria(null, "Eletronicos");
+		/*Categoria cat1 = new Categoria(null, "Eletronicos");
+		categoriaRepositories.save(cat1);
+		Produto p1 = new Produto(null,"produto3cat", 200.0, "jksdfj");
+		p1.getCategorias().add(cat1);
+		produtorepositories.save(p1);
+		Cliente u1 = new Cliente(null, "Marco1", "marco@gmail.com", "0293029");
+		
+		clientRepository.save(u1);
+		Venda v1 = new Venda(u1,null, Instant.now());
+		
+		vendaRepositories.save(v1);
+		
+		ProdutoDaVenda pv1 = new ProdutoDaVenda(p1,v1, 3L);
+		produtoDaVendaRepositories.save(pv1);
+		v1.getProdutos().add(pv1);
+		vendaRepositories.save(v1);*/
+		/*Categoria cat1 = new Categoria(null, "Eletronicos");
 		Categoria cat2 = new Categoria(null, "Alimentos");
 		Categoria cat3 = new Categoria(null, "Vestiveis");
 		
@@ -74,7 +89,7 @@ public class TestConfig implements CommandLineRunner{
 		Optional<Cliente> u1 = clientRepository.findById(1L);
 		Optional<Cliente> u2 = clientRepository.findById(2L);
 		Optional<Cliente> u3 = clientRepository.findById(3L);
-		*/
+		
 		Venda v1 = new Venda(u1,null, Instant.now());
 		Venda v2 = new Venda(u2,null, Instant.now());
 		Venda v3 = new Venda(u3,null, Instant.now());
@@ -84,7 +99,7 @@ public class TestConfig implements CommandLineRunner{
 		/*Optional<Produto> p1 = produtorepositories.findById(1L);
 		Optional<Produto> p2 = produtorepositories.findById(2L);
 		Optional<Produto> p3 = produtorepositories.findById(3L);
-		*/
+		
 		ProdutoDaVenda pv1 = new ProdutoDaVenda(p1,v1, 3L);
 		ProdutoDaVenda pv2 = new ProdutoDaVenda(p2,v1, 3L);
 		
@@ -98,7 +113,7 @@ public class TestConfig implements CommandLineRunner{
 		v2.getProdutos().add(pv3);
 		v3.getProdutos().add(pv1);
 		
-		vendaRepositories.saveAll(Arrays.asList(v1,v2,v3));
+		vendaRepositories.saveAll(Arrays.asList(v1,v2,v3));*/
 	}
 	
 	

@@ -23,6 +23,7 @@ public class ProdutoResources {
 	public ResponseEntity<Produto> findById(@PathVariable Long id){
 		System.out.println("oi");
 		Produto obj = services.finById(id);
+		System.out.println(obj);
 		return ResponseEntity.ok().body(obj);
 	}
 	

@@ -22,8 +22,9 @@ public class VendaResources {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Venda> findById(@PathVariable Long id){
-		System.out.println("oi");
+		System.out.println("=========================================================");
 		Venda obj = services.finById(id);
+		System.out.println(obj);
 		return ResponseEntity.ok().body(obj);
 	}
 	

@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marco.sistemaVendas.entities.enums.Pagamento;
 
@@ -27,15 +30,15 @@ public class Venda implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Double valorTotal;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant dataVenda;
 	
 	@ManyToOne
     @JoinColumn(name="id_cliente")
-	@JsonIgnore
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy = "id.idVenda")
-	private Set<ProdutoDaVenda> produtoDaVenda = new HashSet<>();
+	@OneToMany(mappedBy = "id.venda")
+	private Set<ProdutoDaVenda> items = new HashSet<>();
 	
 	
 	
@@ -60,7 +63,7 @@ public class Venda implements Serializable{
 
 	public Double getValorTotal() {
 		Double sum = 0.0;
-		for(ProdutoDaVenda prodv: produtoDaVenda) {
+		for(ProdutoDaVenda prodv: items) {
 			sum+= prodv.getSubTotal();
 		}
 		return sum;
@@ -82,10 +85,6 @@ public class Venda implements Serializable{
 		this.cliente = cliente;
 	}
 	
-	public Set<ProdutoDaVenda> getProdutos() {
-		return produtoDaVenda;
-	}
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(dataVenda, id, valorTotal);
@@ -103,4 +102,15 @@ public class Venda implements Serializable{
 		return Objects.equals(dataVenda, other.dataVenda) && Objects.equals(id, other.id)
 				&& Objects.equals(valorTotal, other.valorTotal);
 	}
+
+	@Override
+	public String toString() {
+		return "Venda [id=" + id + ", valorTotal=" + valorTotal + ", dataVenda=" + dataVenda + ", cliente=" + cliente
+				+ ", produtoDaVenda=" + items + "]";
+	}
+
+	public Set<ProdutoDaVenda> getItems() {
+		return items;
+	}
+	
 }
