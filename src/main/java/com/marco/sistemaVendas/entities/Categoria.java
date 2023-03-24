@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.marco.sistemaVendas.entities.dto.CategoriaDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,11 +24,16 @@ public class Categoria implements Serializable{
 	private String nome;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "categorias")//informando que o relacionamento n pra n foi configurado pelo campo categorias
+	@ManyToMany(mappedBy = "categorias")
 	private Set<Produto> produtos = new HashSet<>();
 	
 	public Categoria() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Categoria(CategoriaDTO cat) {
+		id = cat.getId();
+		nome = cat.getNome();
 	}
 	
 	public Categoria(Long id, String nome) {
@@ -73,5 +79,4 @@ public class Categoria implements Serializable{
 		Categoria other = (Categoria) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
 	}
-	
 }

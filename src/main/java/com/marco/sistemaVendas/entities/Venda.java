@@ -6,21 +6,19 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.marco.sistemaVendas.entities.enums.Pagamento;
+import com.marco.sistemaVendas.entities.enums.StatusPagamento;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Venda implements Serializable{
@@ -29,24 +27,28 @@ public class Venda implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Transient
 	private Double valorTotal;
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant dataVenda;
 	
 	@ManyToOne
-    @JoinColumn(name="id_cliente")
+    @JoinColumn(name="idCliente")
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "id.venda")
-	private Set<ProdutoDaVenda> items = new HashSet<>();
+	private Set<ProdutoDaVenda> itens = new HashSet<>();
 	
-	
+	@OneToOne(mappedBy = "venda", cascade = CascadeType.ALL)
+	private Pagamento pagamento;
 	
 	public Venda() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Venda(Cliente cliente, Long id, Instant dataVenda) {
+	public Venda(Cliente cliente,Pagamento pagamento, Long id, Instant dataVenda) {
 		super();
 		this.id = id;
 		this.dataVenda = dataVenda;
@@ -63,7 +65,7 @@ public class Venda implements Serializable{
 
 	public Double getValorTotal() {
 		Double sum = 0.0;
-		for(ProdutoDaVenda prodv: items) {
+		for(ProdutoDaVenda prodv: itens) {
 			sum+= prodv.getSubTotal();
 		}
 		return sum;
@@ -85,6 +87,18 @@ public class Venda implements Serializable{
 		this.cliente = cliente;
 	}
 	
+	public Set<ProdutoDaVenda> getItens() {
+		return itens;
+	}
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(dataVenda, id, valorTotal);
@@ -106,11 +120,6 @@ public class Venda implements Serializable{
 	@Override
 	public String toString() {
 		return "Venda [id=" + id + ", valorTotal=" + valorTotal + ", dataVenda=" + dataVenda + ", cliente=" + cliente
-				+ ", produtoDaVenda=" + items + "]";
+				+ ", produtoDaVenda=" + itens + "]";
 	}
-
-	public Set<ProdutoDaVenda> getItems() {
-		return items;
-	}
-	
 }

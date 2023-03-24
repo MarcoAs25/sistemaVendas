@@ -6,16 +6,15 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.marco.sistemaVendas.entities.dto.ClienteDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_cliente")
 public class Cliente implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -31,7 +30,13 @@ public class Cliente implements Serializable{
 	private Set<Venda> vendas = new HashSet<>();
 	
 	public Cliente() {
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Cliente(ClienteDTO cli) {
+		id = cli.getId();
+		nome = cli.getNome();
+		email = cli.getEmail();
+		telefone = cli.getTelefone();
 	}
 	
 	public Cliente(Long id, String nome, String email, String telefone) {
@@ -93,6 +98,12 @@ public class Cliente implements Serializable{
 			return false;
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", vendas="
+				+ vendas + "]";
 	}
 	
 }

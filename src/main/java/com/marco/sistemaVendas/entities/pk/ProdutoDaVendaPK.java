@@ -10,14 +10,16 @@ import com.marco.sistemaVendas.entities.Venda;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+
 @Embeddable
 public class ProdutoDaVendaPK implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
 	@ManyToOne
 	@JoinColumn(name = "idProduto")
 	private Produto produto;
+	
 	@ManyToOne
 	@JoinColumn(name = "idVenda")
 	private Venda venda;
@@ -26,12 +28,12 @@ public class ProdutoDaVendaPK implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProdutoDaVendaPK(Produto idProduto, Venda idVenda) {
+	public ProdutoDaVendaPK(Produto produto, Venda venda) {
 		super();
-		this.produto = idProduto;
-		this.venda = idVenda;
+		this.produto = produto;
+		this.venda = venda;
 	}
-
+	
 	public Produto getIdProduto() {
 		return produto;
 	}
@@ -39,6 +41,7 @@ public class ProdutoDaVendaPK implements Serializable{
 	public void setIdProduto(Produto idProduto) {
 		this.produto = idProduto;
 	}
+	
 	@JsonIgnore
 	public Venda getIdVenda() {
 		return venda;

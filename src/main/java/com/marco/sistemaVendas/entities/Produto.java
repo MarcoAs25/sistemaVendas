@@ -6,7 +6,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.marco.sistemaVendas.entities.dto.ProdutoDTO;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,11 +27,10 @@ public class Produto implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Double valorProduto;
-	private String Descricao;
+	private String descricao;
 	private String nome;
 	
-	@ManyToMany//Definindo Relacionamento n pra n
-	//configurando o relacionamento n pra n, tabela, id das duas colunas a serem "Fundidas"
+	@ManyToMany
 	@JoinTable(name = "tb_produto_categoria",
 			joinColumns = @JoinColumn(name = "idProduto"),
 			inverseJoinColumns = @JoinColumn(name="idCategoria"))
@@ -41,13 +42,18 @@ public class Produto implements Serializable{
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
-
+	public Produto(ProdutoDTO prod) {
+		id = prod.getId();
+		valorProduto = prod.getValorProduto();
+		descricao = prod.getDescricao();
+		nome = prod.getNome();
+	}
 	public Produto(Long id, String nome, Double valorProduto, String descricao) {
 		super();
 		this.id = id;
 		this.valorProduto = valorProduto;
 		this.nome = nome;
-		Descricao = descricao;
+		this.descricao = descricao;
 	}
 
 	public Long getId() {
@@ -67,11 +73,11 @@ public class Produto implements Serializable{
 	}
 
 	public String getDescricao() {
-		return Descricao;
+		return descricao;
 	}
 
 	public void setDescricao(String descricao) {
-		Descricao = descricao;
+		this.descricao = descricao;
 	}
 	
 	public String getNome() {
@@ -105,6 +111,12 @@ public class Produto implements Serializable{
 			return false;
 		Produto other = (Produto) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", valorProduto=" + valorProduto + ", Descricao=" + descricao + ", nome=" + nome
+				+ ", categorias=" + categorias + ", produtoDaVenda=" + produtoDaVenda + "]";
 	}
 	
 }
