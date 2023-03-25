@@ -16,6 +16,27 @@ curl -X 'GET' \
   'http://localhost:8080/clientes' \
   -H 'accept: */*'
 ```
+## Resposta
+
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    [
+    {
+        "id": 1,
+        "nome": "mariano",
+        "email": "mariano@gmail.com",
+        "telefone": "456546456"
+    },
+    {
+        "id": 3,
+        "nome": "joaquim",
+        "email": "joaquim@gmail.com",
+        "telefone": "789789789"
+    }
+    ]
 ## Obtendo um cliente por Id
 ## Requisição
 `GET /clientes/id`
@@ -24,7 +45,18 @@ curl -X 'GET' \
   'http://localhost:8080/clientes/1' \
   -H 'accept: */*'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "nome": "mariano",
+        "email": "mariano@gmail.com",
+        "telefone": "456546456"
+    }
 ## Criando um novo cliente
 ## Requisição
 `POST /clientes`
@@ -39,7 +71,18 @@ curl -X 'POST' \
    "telefone": "string"
     }'
 ```
-
+## Resposta
+    HTTP/1.1 201 CREATED
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 201 CREATED
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "nome": "string",
+        "email": "string",
+        "telefone": "string"
+    }
 ## Atualizando um cliente
 ## Requisição
 `PUT /clientes`
@@ -55,7 +98,18 @@ curl -X 'PUT' \
    "telefone": "string"
 }'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "nome": "string",
+        "email": "string",
+        "telefone": "string"
+    }
 ## Removendo um cliente
 ## Requisição
 `DELETE /clientes/id`
@@ -64,7 +118,11 @@ curl -X 'DELETE' \
   'http://localhost:8080/clientes/1' \
   -H 'accept: */*'
 ```
-
+## Resposta
+    HTTP/1.1 204 No Content
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 204 No Content
+    Connection: close
 ---------------------------------------------------------------------------
 # Categoria
 
@@ -76,7 +134,22 @@ curl -X 'GET' \
   'http://localhost:8080/categorias' \
   -H 'accept: */*'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    [
+    {
+        "id": 1,
+        "nome": "string"
+    },
+    {
+        "id": 3,
+        "nome": "string"
+    }
+    ]
 ## Obtendo um categoria por Id
 ## Requisição
 `GET /categorias/id`
@@ -85,7 +158,17 @@ curl -X 'GET' \
   'http://localhost:8080/categorias/1' \
   -H 'accept: */*'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 3,
+        "nome": "string"
+    }
+    
 ## Criando uma nova categoria
 ## Requisição
 `POST /categorias`
@@ -98,6 +181,17 @@ curl -X 'POST' \
   "nome": "string"
 }'
 ```
+## Resposta
+    HTTP/1.1 201 CREATED
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 201 CREATED
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 3,
+        "nome": "string"
+    }
+    
 ## Atualizando uma categoria
 ## Requisição
 `PUT /categorias/id`
@@ -110,7 +204,16 @@ curl -X 'PUT' \
   "nome": "string"
 }'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "nome": "string"
+    }
 ## Removendo uma categoria
 ## Requisição
 `DELETE /categorias/id`
@@ -119,6 +222,11 @@ curl -X 'DELETE' \
   'http://localhost:8080/categorias/1' \
   -H 'accept: */*'
 ```
+## Resposta
+    HTTP/1.1 204 No Content
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 204 No Content
+    Connection: close
 ---------------------------------------------------------------------------
 # Produto
 ## Obtendo uma lista de Produtos
@@ -129,8 +237,38 @@ curl -X 'GET' \
   'http://localhost:8080/produtos' \
   -H 'accept: */*'
 ```
-
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    [
+    {
+        "id": 1,
+        "valorProduto": 0.0,
+        "descricao": "string",
+        "nome": "string",
+        "categorias": [
+            {
+                "id": 1,
+                "nome": "string"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "valorProduto": 2000.0,
+        "descricao": "Smart TV Amoled",
+        "nome": "TV 45 polegadas",
+        "categorias": [
+            {
+                "id": 4,
+                "nome": "Eletronicos"
+            }
+        ]
+    }
+    ]
 ## Obtendo um produto por Id
 ## Requisição
 `GET /produtos/id`
@@ -139,7 +277,24 @@ curl -X 'GET' \
   'http://localhost:8080/produtos/1' \
   -H 'accept: */*'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "valorProduto": 0.0,
+        "descricao": "string",
+        "nome": "string",
+        "categorias": [
+            {
+                "id": 1,
+                "nome": "string"
+            }
+        ]
+    }
 ## Criando um novo produto
 ## Requisição
 `POST /produtos`
@@ -154,12 +309,29 @@ curl -X 'POST' \
   "nome": "string",
   "categorias": [
     {
-      "id": 0
+      "id": 1
     }
   ]
 }'
 ```
-
+## Resposta
+    HTTP/1.1 201 CREATED
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 201 CREATED
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "valorProduto": 0.0,
+        "descricao": "string",
+        "nome": "string",
+        "categorias": [
+            {
+                "id": 1,
+                "nome": "string"
+            }
+        ]
+    }
 ## Atualizando um produto
 ## Requisição
 `PUT /produtos/id`
@@ -180,7 +352,24 @@ curl -X 'PUT' \
   ]
 }'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "valorProduto": 0.0,
+        "descricao": "string",
+        "nome": "string",
+        "categorias": [
+            {
+                "id": 1,
+                "nome": "string"
+            }
+        ]
+    }
 ## Removendo um produto
 
 ## Requisição
@@ -190,6 +379,11 @@ curl -X 'DELETE' \
   'http://localhost:8080/produtos/1' \
   -H 'accept: */*'
 ```
+## Resposta
+    HTTP/1.1 204 No Content
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 204 No Content
+    Connection: close
 ---------------------------------------------------------------------------
 # Venda
 ## Obtendo uma lista de Vendas
@@ -200,7 +394,49 @@ curl -X 'GET' \
   'http://localhost:8080/vendas' \
   -H 'accept: */*'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    [
+    {
+        "id": 1,
+        "valorTotal": 6000.0,
+        "dataVenda": "2023-03-25T01:31:49Z",
+        "cliente": {
+            "id": 1,
+            "nome": "mariano",
+            "email": "mariano@gmail.com",
+            "telefone": "977557755"
+        },
+        "itens": [
+            {
+                "quantidade": 3,
+                "valorProduto": 2000.0,
+                "produto": {
+                    "id": 1,
+                    "valorProduto": 0.0,
+                    "descricao": "string",
+                    "nome": "string",
+                    "categorias": [
+                        {
+                            "id": 1,
+                            "nome": "string"
+                        }
+                    ]
+                },
+                "subTotal": 6000.0
+            }
+        ],
+        "pagamento": {
+            "id": 1,
+            "momentoGeracao": "2023-03-25T01:31:49Z",
+            "statusPagamento": "AGUARDANDO_PAGAMENTO"
+        }
+    }
+    ]
 ## Obtendo uma venda por Id
 ## Requisição
 `GET /vendas/id`
@@ -209,7 +445,47 @@ curl -X 'GET' \
   'http://localhost:8080/vendas/id' \
   -H 'accept: */*'
 ```
-
+## Resposta
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "valorTotal": 6000.0,
+        "dataVenda": "2023-03-25T01:31:49Z",
+        "cliente": {
+            "id": 1,
+            "nome": "mariano",
+            "email": "mariano@gmail.com",
+            "telefone": "977557755"
+        },
+        "itens": [
+            {
+                "quantidade": 3,
+                "valorProduto": 2000.0,
+                "produto": {
+                    "id": 1,
+                    "valorProduto": 0.0,
+                    "descricao": "string",
+                    "nome": "string",
+                    "categorias": [
+                        {
+                            "id": 1,
+                            "nome": "string"
+                        }
+                    ]
+                },
+                "subTotal": 6000.0
+            }
+        ],
+        "pagamento": {
+            "id": 1,
+            "momentoGeracao": "2023-03-25T01:31:49Z",
+            "statusPagamento": "AGUARDANDO_PAGAMENTO"
+        }
+    }
 ## Criando uma nova venda
 ## Requisição
 `POST /vendas`
@@ -232,6 +508,47 @@ curl -X 'POST' \
     ]
 }'
 ```
+## Resposta
+    HTTP/1.1 201 CREATED
+    Date: Thu, 24 Feb 2011 12:36:32 GMT
+    Status: 201 CREATED
+    Connection: close
+    Content-Type: application/json
+    {
+        "id": 1,
+        "valorTotal": 6000.0,
+        "dataVenda": "2023-03-25T01:31:49Z",
+        "cliente": {
+            "id": 1,
+            "nome": "mariano",
+            "email": "mariano@gmail.com",
+            "telefone": "977557755"
+        },
+        "itens": [
+            {
+                "quantidade": 3,
+                "valorProduto": 2000.0,
+                "produto": {
+                    "id": 1,
+                    "valorProduto": 0.0,
+                    "descricao": "string",
+                    "nome": "string",
+                    "categorias": [
+                        {
+                            "id": 1,
+                            "nome": "string"
+                        }
+                    ]
+                },
+                "subTotal": 6000.0
+            }
+        ],
+        "pagamento": {
+            "id": 1,
+            "momentoGeracao": "2023-03-25T01:31:49Z",
+            "statusPagamento": "AGUARDANDO_PAGAMENTO"
+        }
+    }
 ---------------------------------------------------------------------------
 ### Tecnologias Utilizadas
 <ul>
