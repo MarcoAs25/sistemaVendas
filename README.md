@@ -165,7 +165,7 @@ curl -X 'GET' \
     Connection: close
     Content-Type: application/json
     {
-        "id": 3,
+        "id": 1,
         "nome": "string"
     }
     
