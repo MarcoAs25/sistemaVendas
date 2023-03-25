@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.marco.sistemaVendas.entities.enums.StatusPagamento;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

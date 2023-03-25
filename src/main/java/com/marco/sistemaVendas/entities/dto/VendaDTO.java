@@ -11,6 +11,7 @@ public class VendaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private ClienteDTO cliente;
+	
 	private Set<ProdutoDaVendaDTO> itens = new HashSet<>();
 
 	public VendaDTO() {
@@ -24,6 +25,10 @@ public class VendaDTO implements Serializable{
 	}
 	public Set<ProdutoDaVendaDTO> getItens() {
 		return itens;
+	}
+	
+	public void setItens(Set<ProdutoDaVendaDTO> itens) {
+		this.itens = itens;
 	}
 	public Double getValorTotal() {
 		Double sum = 0d;

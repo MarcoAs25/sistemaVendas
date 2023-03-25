@@ -20,9 +20,7 @@ import com.marco.sistemaVendas.repositories.PagamentoRepositories;
 import com.marco.sistemaVendas.repositories.ProdutoDaVendaRepositories;
 import com.marco.sistemaVendas.repositories.ProdutoRepositories;
 import com.marco.sistemaVendas.repositories.VendaRepositories;
-import com.marco.sistemaVendas.resources.exceptions.StandardError;
 import com.marco.sistemaVendas.services.exceptions.ResourceNotFoundException;
-import com.marco.sistemaVendas.services.exceptions.DatabaseException;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -55,7 +53,6 @@ public class VendaServices {
 	}
 	@Transactional
 	public Venda insert(VendaDTO obj) {
-		System.out.println("olaaaaaa");
 		try {
 			Cliente cliente = clienteRepositories.findById(obj.getCliente().getId())
 					.orElseThrow(()-> new ResourceNotFoundException(obj.getCliente().getId()));

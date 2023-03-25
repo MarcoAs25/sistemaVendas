@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.marco.sistemaVendas.entities.Cliente;
 import com.marco.sistemaVendas.entities.Produto;
 import com.marco.sistemaVendas.entities.dto.ProdutoDTO;
 import com.marco.sistemaVendas.services.ProdutoServices;

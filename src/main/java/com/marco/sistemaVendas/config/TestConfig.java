@@ -1,9 +1,6 @@
 package com.marco.sistemaVendas.config;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,7 +13,6 @@ import com.marco.sistemaVendas.entities.Pagamento;
 import com.marco.sistemaVendas.entities.Produto;
 import com.marco.sistemaVendas.entities.ProdutoDaVenda;
 import com.marco.sistemaVendas.entities.Venda;
-import com.marco.sistemaVendas.entities.enums.StatusPagamento;
 import com.marco.sistemaVendas.repositories.CategoriaRepositories;
 import com.marco.sistemaVendas.repositories.ClienteRepositories;
 import com.marco.sistemaVendas.repositories.PagamentoRepositories;
