@@ -4,7 +4,7 @@
 ## *Api criada com finalidade de exercitar meus conhecimentos no ecossistema java*
 
 ### INFORMAÇÕES
-Na pasta docs é possível encontrar os diagramas utilizados para a criação da api e seu arquiVo collection que pode ser importado no postman para testes de requisições
+Na pasta docs é possível encontrar os diagramas utilizados para a criação da api e seu arquivo collection que pode ser importado no postman para testes de requisições
 # REST API
 ---------------------------------------------------------------------------
 # Cliente

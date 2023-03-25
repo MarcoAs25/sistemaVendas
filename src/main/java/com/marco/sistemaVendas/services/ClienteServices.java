@@ -39,6 +39,9 @@ public class ClienteServices {
 	public void delete(Long id) {
 		if(repositories.existsById(id)) {
 			try {
+				if(repositories.findById(id).get().getVendas().size() > 0) {
+					throw new DatabaseException("Cannot delete or update a parent row");
+				}
 				repositories.deleteById(id);
 			} catch (DataIntegrityViolationException e) {
 				throw new DatabaseException(e.getMessage());
