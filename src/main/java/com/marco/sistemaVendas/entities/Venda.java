@@ -48,7 +48,7 @@ public class Venda implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Venda(Cliente cliente,Pagamento pagamento, Long id, Instant dataVenda) {
+	public Venda(Cliente cliente, Long id, Instant dataVenda) {
 		super();
 		this.id = id;
 		this.dataVenda = dataVenda;

@@ -60,7 +60,7 @@ public class TestConfig implements CommandLineRunner{
 		Cliente u1 = new Cliente(null, "Marco", "marco@gmail.com", "0293029");
 		clientRepository.save(u1);
 		
-		Venda v1 = new Venda(u1,null,null, Instant.now());
+		Venda v1 = new Venda(u1,null, Instant.now());
 		Pagamento pag = new Pagamento(null, Instant.now(), v1);
 		pagamentoRepositories.save(pag);
 		vendaRepositories.save(v1);

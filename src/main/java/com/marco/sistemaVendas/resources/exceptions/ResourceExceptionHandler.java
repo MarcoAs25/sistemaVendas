@@ -29,5 +29,12 @@ public class ResourceExceptionHandler{
 		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<StandardError> badArguments(IllegalArgumentException e, HttpServletRequest request){
+		String error = "Bad argument";
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}
 
 }
